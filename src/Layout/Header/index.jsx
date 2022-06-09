@@ -18,15 +18,21 @@ import {
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 
 import { Link as ReachLink } from "react-router-dom";
+import { BsCart, BsPerson } from "react-icons/bs";
 
-const Links = ["Home", "Tienda", "404"];
+const Links = [
+  { label: "Home", url: "/" },
+  { label: "Tienda", url: "/search" },
+  { label: "Carito", url: "/cart" },
+  { label: "404", url: "/asdasd" },
+];
 
-const NavLink = ({ text }) => (
+const NavLink = ({ text, link }) => (
   <Link
     px={2}
     py={1}
     as={ReachLink}
-    to={text}
+    to={link}
     rounded={"md"}
     _hover={{
       textDecoration: "none",
@@ -54,20 +60,16 @@ const Header = () => {
           <Box>Logo</Box>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {Links.map((link) => (
-              <NavLink key={link} text={link}></NavLink>
+              <NavLink
+                key={`linka${link.label}`}
+                text={link.label}
+                link={link.url}
+              ></NavLink>
             ))}
           </HStack>
         </HStack>
         <Flex alignItems={"center"}>
-          <Button
-            variant={"solid"}
-            colorScheme={"teal"}
-            size={"sm"}
-            mr={4}
-            leftIcon={<AddIcon />}
-          >
-            Action
-          </Button>
+          <BsCart />
           <Menu>
             <MenuButton
               as={Button}
@@ -76,12 +78,7 @@ const Header = () => {
               cursor={"pointer"}
               minW={0}
             >
-              <Avatar
-                size={"sm"}
-                src={
-                  "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                }
-              />
+              <BsPerson />
             </MenuButton>
             <MenuList>
               <MenuItem>Link 1</MenuItem>
@@ -97,7 +94,11 @@ const Header = () => {
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
-              <NavLink key={link} text={link}></NavLink>
+              <NavLink
+                key={`link${link.label}`}
+                text={link.label}
+                link={link.url}
+              ></NavLink>
             ))}
           </Stack>
         </Box>
