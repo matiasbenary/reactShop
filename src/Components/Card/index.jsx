@@ -22,7 +22,7 @@ const Card = ({ data }) => {
       pos={"relative"}
       zIndex={1}
       as={ReachLink}
-      to={`detail/${data.id}`}
+      to={`/detail/${data.id}`}
     >
       <Box
         rounded={"lg"}

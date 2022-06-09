@@ -7,7 +7,10 @@ const Cart = () => {
     <>
       Hola
       {cart.map((item) => (
-        <h1>{item.title}</h1>
+        <div>
+          <h1>{item.title}</h1>
+          <img src={item.img}></img>
+        </div>
       ))}
     </>
   );
