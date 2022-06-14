@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
@@ -11,9 +12,9 @@ const Layout = ({ children }) => {
       justifyContent="space-between"
       minHeight="100vh"
     >
-      <Header></Header>
+      <Header />
       <Main>{children}</Main>
-      <Footer></Footer>
+      <Footer />
     </Box>
   );
 };
