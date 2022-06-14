@@ -25,7 +25,9 @@ const Search = () => {
       {JSON.stringify(debouncedValue)}
       <Filter setFilter={setFilter} />
       <Cards response={response} loading={loading} />
-      <Pagination setPage={setPage} pagination={response.meta.pagination} />
+      {response && (
+        <Pagination setPage={setPage} pagination={response.meta.pagination} />
+      )}
     </>
   );
 };
