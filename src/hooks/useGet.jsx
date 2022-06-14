@@ -2,16 +2,25 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
+import { converPagination, converPopulate } from "../utils/objectToUri";
+
 axios.defaults.baseURL = "https://strapiecommerce-production.up.railway.app";
 
-const useGet = (url) => {
+const useGet = (url, populateArray) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setloading] = useState(true);
-  console.log("hola");
+
+  const [filters, setFilters] = useState("");
+  const populate = converPopulate(populateArray);
+
+  const [page, setPage] = useState(1);
+
+  const paginate = converPagination(page);
+
   const fetchData = () => {
     axios
-      .get(`/api/${url}`)
+      .get(`/api/${url}?${paginate}&${populate}&${filters}`)
       .then((res) => {
         setResponse(res.data);
       })
@@ -24,9 +33,9 @@ const useGet = (url) => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [filters, page]);
 
-  return { response, error, loading };
+  return { response, error, loading, setFilters, setPage };
 };
 
 export default useGet;

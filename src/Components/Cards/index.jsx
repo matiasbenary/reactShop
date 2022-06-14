@@ -1,12 +1,10 @@
 import { SimpleGrid, Skeleton } from "@chakra-ui/react";
 
-import useGet from "../../hooks/useGet";
 import Card from "../Card";
 import products from "./products";
 // import images from "./img";
 
-const Cards = () => {
-  const { response, error, loading } = useGet("products?populate=image");
+const Cards = ({ response, loading }) => {
   // console.log(response);
   // return null;
   // <Flex w="100%" flexWrap="wrap" mt="10" justify-content="space-between">
@@ -15,7 +13,7 @@ const Cards = () => {
       <SimpleGrid w="100%" my="10" minChildWidth="330px" spacing="40px">
         {products.data.map((product) => (
           <Skeleton key={`loadingCard${product.id}`}>
-            <Card id={product.id} data={product.attributes}></Card>
+            <Card id={product.id} data={product.attributes} />
           </Skeleton>
         ))}
       </SimpleGrid>
@@ -29,7 +27,7 @@ const Cards = () => {
             key={`card${product.id}`}
             id={product.id}
             data={product.attributes}
-          ></Card>
+          />
         ))}
     </SimpleGrid>
   );
