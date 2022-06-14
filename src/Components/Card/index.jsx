@@ -65,7 +65,7 @@ const Card = ({ data, id }) => {
           <Text fontWeight={800} fontSize={"xl"}>
             {data.price}
           </Text>
-          <Text textDecoration={"line-through"} color={"gray.600"}></Text>
+          <Text textDecoration={"line-through"} color={"gray.600"} />
         </Stack>
       </Stack>
     </Box>
