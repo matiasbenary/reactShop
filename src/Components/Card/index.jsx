@@ -1,15 +1,14 @@
 import {
   Box,
-  useColorModeValue,
   Heading,
-  Text,
-  Stack,
   Image,
+  Stack,
+  Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
-
 import { Link as ReachLink } from "react-router-dom";
 
-const Card = ({ data }) => {
+const Card = ({ data, id }) => {
   return (
     <Box
       role={"group"}
@@ -22,7 +21,7 @@ const Card = ({ data }) => {
       pos={"relative"}
       zIndex={1}
       as={ReachLink}
-      to={`/detail/${data.id}`}
+      to={`/detail/${id}`}
     >
       <Box
         rounded={"lg"}
@@ -52,7 +51,7 @@ const Card = ({ data }) => {
           height={230}
           width={282}
           objectFit={"cover"}
-          src={data.img}
+          src={data.image.data.attributes.url}
         />
       </Box>
       <Stack pt={10} align={"center"}>

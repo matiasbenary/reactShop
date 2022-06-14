@@ -1,11 +1,11 @@
 import {
   Box,
-  IconButton,
-  useBreakpointValue,
-  Stack,
-  Heading,
-  Text,
   Container,
+  Heading,
+  IconButton,
+  Stack,
+  Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
 // Here we have used react-icons package for the icons

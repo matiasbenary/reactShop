@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+
 import localStorageEffect from "./utils";
 
 const cartState = atom({
