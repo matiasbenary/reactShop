@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import Cards from "../../Components/Cards";
+import { ProductList } from "../../components/Products";
 import useDebounce from "../../hooks/useDebounce";
 import useGet from "../../hooks/useGet";
 import { convertFilter } from "../../utils/objectToUri";
-import Filter from "./Components/Filter";
-import Pagination from "./Components/Pagination";
+import Filter from "./components/Filter";
+import Pagination from "./components/Pagination";
 
 const Search = () => {
   const { response, loading, setFilters, setPage } = useGet("products", [
@@ -24,7 +24,7 @@ const Search = () => {
       Debounced
       {JSON.stringify(debouncedValue)}
       <Filter setFilter={setFilter} />
-      <Cards response={response} loading={loading} />
+      <ProductList response={response} loading={loading} />
       {response && (
         <Pagination setPage={setPage} pagination={response.meta.pagination} />
       )}

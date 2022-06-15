@@ -7,12 +7,13 @@ TODO:
 
 */
 
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import cartStateitem from "../shared/cart";
 
 const useCart = () => {
   const setCartState = useSetRecoilState(cartStateitem);
+  const cart = useRecoilValue(cartStateitem);
 
   const addProduct = (product) => {
     setCartState((cart) => {
@@ -41,16 +42,19 @@ const useCart = () => {
       return cart.reduce((acc, pr) => {
         if (pr.id !== product.id) return [...acc, pr];
         if (pr.cant === 1) return acc;
-        pr.cant -= 1;
-        return [...acc, pr];
+        return [...acc, { ...pr, cant: pr.cant - 1 }];
       }, []);
     });
   };
+
+  const calcTotal = () =>
+    cart.reduce((acc, pr) => acc + pr.cant * pr.attributes.price, 0);
+
   const emptyCart = () => {
     setCartState([]);
   };
 
-  return { addProduct, deleteProduct, removeOneProduct, emptyCart };
+  return { addProduct, deleteProduct, removeOneProduct, emptyCart, calcTotal };
 };
 
 export default useCart;

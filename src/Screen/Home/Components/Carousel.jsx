@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Box,
   Container,
@@ -7,7 +9,6 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 // And react-slick as our Carousel Lib

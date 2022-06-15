@@ -9,7 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+import useCart from "../../hooks/useCart";
+
 export const OrderSummary = () => {
+  const { calcTotal } = useCart();
+
   return (
     <VStack
       spacing={10}
@@ -24,10 +28,6 @@ export const OrderSummary = () => {
       <Table variant="ghost">
         <Tbody>
           <Tr>
-            <Td w="50%">Subtotal</Td>
-            <Td>$500</Td>
-          </Tr>
-          <Tr>
             <Td w="50%">Envio</Td>
             <Td>Enter your address to view shipping options.</Td>
           </Tr>
@@ -35,7 +35,7 @@ export const OrderSummary = () => {
         <Tfoot>
           <Tr>
             <Td w="50%">Total</Td>
-            <Td>$500</Td>
+            <Td fontWeight="bold">${calcTotal()}</Td>
           </Tr>
         </Tfoot>
       </Table>

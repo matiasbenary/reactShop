@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
 
-const Card = ({ data, id }) => {
+const CardProduct = ({ data, id }) => {
   return (
     <Box
       role={"group"}
@@ -21,7 +21,7 @@ const Card = ({ data, id }) => {
       pos={"relative"}
       zIndex={1}
       as={ReachLink}
-      to={`/detail/${id}`}
+      to={`/producto/${id}`}
     >
       <Box
         rounded={"lg"}
@@ -72,4 +72,4 @@ const Card = ({ data, id }) => {
   );
 };
 
-export default Card;
+export { CardProduct };

@@ -15,9 +15,12 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+import useCart from "../../hooks/useCart";
+
 export const CartItem = ({ product }) => {
   const { id, cant } = product;
   const { title, price, image } = product.attributes;
+  const { deleteProduct, removeOneProduct, addProduct } = useCart();
 
   return (
     <SimpleGrid
@@ -49,8 +52,8 @@ export const CartItem = ({ product }) => {
         <NumberInput size="xs" maxW={16} min={1} defaultValue={cant}>
           <NumberInputField />
           <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
+            <NumberIncrementStepper onClick={() => addProduct(product)} />
+            <NumberDecrementStepper onClick={() => removeOneProduct(product)} />
           </NumberInputStepper>
         </NumberInput>
       </Box>
@@ -64,6 +67,7 @@ export const CartItem = ({ product }) => {
         position="absolute"
         top={0}
         right={0}
+        onClick={() => deleteProduct(product)}
       />
     </SimpleGrid>
   );

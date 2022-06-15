@@ -1,3 +1,5 @@
+import { Link } from "./components/Link";
+
 const config = {
   initialColorMode: "light",
   useSystemColorMode: false,
@@ -34,6 +36,9 @@ const config = {
       300: "#4780f7",
       500: "#0a55f4",
     },
+  },
+  components: {
+    Link,
   },
 };
 

@@ -1,13 +1,15 @@
-import Cards from "../../Components/Cards";
+import { ProductList } from "../../components/Products";
 import useGet from "../../hooks/useGet";
-import Carousel from "./Components/Carousel";
+import Carousel from "./components/Carousel";
 
 const Home = () => {
   const { response, loading } = useGet("products", ["image"]);
+  console.log(response);
+  // return null;
   return (
     <>
       <Carousel />
-      <Cards response={response} loading={loading} />
+      <ProductList response={response} loading={loading} />
     </>
   );
 };

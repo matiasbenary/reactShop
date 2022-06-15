@@ -1,7 +1,7 @@
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
@@ -14,17 +14,17 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
-
+import { BsPerson } from "react-icons/bs";
 import { Link as ReachLink } from "react-router-dom";
-import { BsCart, BsPerson } from "react-icons/bs";
+
+import { CartDrawer } from "../../components/Cart/CartDrawer";
 
 const Links = [
-  { label: "Home", url: "/" },
-  { label: "Tienda", url: "/search" },
-  { label: "Carito", url: "/cart" },
-  { label: "404", url: "/asdasd" },
+  { label: "Tienda", url: "/productos" },
+  { label: "Nosotros", url: "/nosotros" },
 ];
 
 const NavLink = ({ text, link }) => (
@@ -56,29 +56,43 @@ const Header = () => {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <HStack spacing={8} alignItems={"center"}>
-          <Box>Logo</Box>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+
+        <Heading size="md">
+          <Link as={ReachLink} to={"/"}>
+            Ada Shop
+          </Link>
+        </Heading>
+
+        <Flex alignItems={"center"} gap={5}>
+          <HStack
+            as={"nav"}
+            spacing={4}
+            display={{ base: "none", md: "flex" }}
+            justify="flex-end"
+          >
             {Links.map((link) => (
               <NavLink
-                key={`linka${link.label}`}
+                key={`link-${link.label}`}
                 text={link.label}
                 link={link.url}
-              ></NavLink>
+              />
             ))}
           </HStack>
-        </HStack>
-        <Flex alignItems={"center"}>
-          <BsCart />
+          <Text as="span" display={["none", null, "block"]}>
+            |
+          </Text>
+          {/* Carrito */}
+          <CartDrawer />
+          {/* Menu del usuario */}
           <Menu>
             <MenuButton
               as={Button}
               rounded={"full"}
               variant={"link"}
               cursor={"pointer"}
-              minW={0}
+              size="xs"
             >
-              <BsPerson />
+              <BsPerson size={25} />
             </MenuButton>
             <MenuList>
               <MenuItem>Link 1</MenuItem>
@@ -98,7 +112,7 @@ const Header = () => {
                 key={`link${link.label}`}
                 text={link.label}
                 link={link.url}
-              ></NavLink>
+              />
             ))}
           </Stack>
         </Box>

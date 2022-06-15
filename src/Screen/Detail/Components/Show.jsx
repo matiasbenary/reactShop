@@ -17,73 +17,70 @@ import {
 import { MdLocalShipping } from "react-icons/md";
 
 import useCart from "../../../hooks/useCart";
+import useGet from "../../../hooks/useGet";
 
-// import useGet from "../../../hooks/useGet";
-
-const item = {
-  id: 1,
-  attributes: {
-    title: "Botellas almacenadoras",
-    price: 200,
-    description: "Son botellas",
-    createdAt: "2022-06-13T02:37:31.173Z",
-    updatedAt: "2022-06-13T02:38:54.164Z",
-    publishedAt: "2022-06-13T02:38:54.098Z",
-    stock: 1000,
-    image: {
-      data: {
-        id: 3,
-        attributes: {
-          name: "102.webp",
-          alternativeText: "102.webp",
-          caption: "102.webp",
-          width: 400,
-          height: 400,
-          formats: {
-            thumbnail: {
-              ext: ".webp",
-              url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/thumbnail_102_d0a7a47a28.webp",
-              hash: "thumbnail_102_d0a7a47a28",
-              mime: "image/webp",
-              name: "thumbnail_102.webp",
-              path: null,
-              size: 1.95,
-              width: 156,
-              height: 156,
-              provider_metadata: {
-                public_id: "thumbnail_102_d0a7a47a28",
-                resource_type: "image",
-              },
-            },
-          },
-          hash: "102_d0a7a47a28",
-          ext: ".webp",
-          mime: "image/webp",
-          size: 7.79,
-          url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/102_d0a7a47a28.webp",
-          previewUrl: null,
-          provider: "cloudinary",
-          provider_metadata: {
-            public_id: "102_d0a7a47a28",
-            resource_type: "image",
-          },
-          createdAt: "2022-06-13T02:36:49.302Z",
-          updatedAt: "2022-06-13T02:36:49.302Z",
-        },
-      },
-    },
-  },
-};
+// const item = {
+//   id: 1,
+//   attributes: {
+//     title: "Botellas almacenadoras",
+//     price: 200,
+//     description: "Son botellas",
+//     createdAt: "2022-06-13T02:37:31.173Z",
+//     updatedAt: "2022-06-13T02:38:54.164Z",
+//     publishedAt: "2022-06-13T02:38:54.098Z",
+//     stock: 1000,
+//     image: {
+//       data: {
+//         id: 3,
+//         attributes: {
+//           name: "102.webp",
+//           alternativeText: "102.webp",
+//           caption: "102.webp",
+//           width: 400,
+//           height: 400,
+//           formats: {
+//             thumbnail: {
+//               ext: ".webp",
+//               url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/thumbnail_102_d0a7a47a28.webp",
+//               hash: "thumbnail_102_d0a7a47a28",
+//               mime: "image/webp",
+//               name: "thumbnail_102.webp",
+//               path: null,
+//               size: 1.95,
+//               width: 156,
+//               height: 156,
+//               provider_metadata: {
+//                 public_id: "thumbnail_102_d0a7a47a28",
+//                 resource_type: "image",
+//               },
+//             },
+//           },
+//           hash: "102_d0a7a47a28",
+//           ext: ".webp",
+//           mime: "image/webp",
+//           size: 7.79,
+//           url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/102_d0a7a47a28.webp",
+//           previewUrl: null,
+//           provider: "cloudinary",
+//           provider_metadata: {
+//             public_id: "102_d0a7a47a28",
+//             resource_type: "image",
+//           },
+//           createdAt: "2022-06-13T02:36:49.302Z",
+//           updatedAt: "2022-06-13T02:36:49.302Z",
+//         },
+//       },
+//     },
+//   },
+// };
 
 const Show = ({ id }) => {
-  //   const { response, error, loading } = useGet(`products/${id}?populate=image`);
-  //   console.log(response);
+  const { response } = useGet(`products/${id}/`, ["image"]);
 
-  //   if (loading) {
-  //     return <Skeleton></Skeleton>;
-  //   }
-  //   if (!response) return null;
   const { addProduct } = useCart();
+
+  const { title, price, description, image } = response?.data.attributes || {};
+
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid
@@ -95,9 +92,7 @@ const Show = ({ id }) => {
           <Image
             rounded={"md"}
             alt={"product image"}
-            src={
-              "https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080"
-            }
+            src={image?.data.attributes.url}
             fit={"cover"}
             align={"center"}
             w={"100%"}
@@ -111,14 +106,14 @@ const Show = ({ id }) => {
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
-              Automatic Watch
+              {title}
             </Heading>
             <Text
               color={useColorModeValue("gray.900", "gray.400")}
               fontWeight={300}
               fontSize={"2xl"}
             >
-              $350.00 USD
+              ${price}
             </Text>
           </Box>
 
@@ -132,20 +127,7 @@ const Show = ({ id }) => {
             }
           >
             <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-                color={useColorModeValue("gray.500", "gray.400")}
-                fontSize={"2xl"}
-                fontWeight={"300"}
-              >
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore
-              </Text>
-              <Text fontSize={"lg"}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
-              </Text>
+              <Text fontSize={"lg"}>{description}</Text>
             </VStack>
             <Box>
               <Text
@@ -244,7 +226,7 @@ const Show = ({ id }) => {
               boxShadow: "lg",
             }}
             onClick={() => {
-              addProduct(item);
+              addProduct(response?.data);
             }}
           >
             Add to cart

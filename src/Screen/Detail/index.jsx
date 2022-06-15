@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import Show from "./Components/Show";
+import Show from "./components/Show";
 
 const Detail = () => {
   const { id } = useParams();
