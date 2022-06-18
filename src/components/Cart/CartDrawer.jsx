@@ -14,6 +14,7 @@ import {
   Heading,
   Text,
   Link,
+  VStack,
 } from "@chakra-ui/react";
 import { BsCart } from "react-icons/bs";
 import { Link as ReachLink } from "react-router-dom";
@@ -45,7 +46,22 @@ export const CartDrawer = () => {
           <DrawerHeader>Mi Carrito</DrawerHeader>
 
           <DrawerBody>
-            {!cart.length && <Heading>Carrito vacio</Heading>}
+            {!cart.length && (
+              <VStack w="full" align="center" spacing={8}>
+                <Text>Tu carrito esta vacio.</Text>
+                <Link
+                  as={ReachLink}
+                  to="/"
+                  bg="brand"
+                  p="10px 5px"
+                  rounded="lg"
+                  color="white"
+                  onClick={onClose}
+                >
+                  Volver a la tienda
+                </Link>
+              </VStack>
+            )}
 
             {cart.map((product) => (
               <CartItem key={product.id} product={product} />
@@ -58,6 +74,7 @@ export const CartDrawer = () => {
                 w="100%"
                 colorScheme="red"
                 variant="outline"
+                rounded="sm"
                 onClick={emptyCart}
               >
                 Vaciar Carrito

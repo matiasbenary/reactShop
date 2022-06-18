@@ -12,13 +12,12 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
   Heading,
   Text,
 } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
-import { Link as ReachLink } from "react-router-dom";
+import { NavLink as ReachLink } from "react-router-dom";
 
 import { CartDrawer } from "../../components/Cart/CartDrawer";
 
@@ -27,28 +26,28 @@ const Links = [
   { label: "Nosotros", url: "/nosotros" },
 ];
 
-const NavLink = ({ text, link }) => (
-  <Link
-    px={2}
-    py={1}
-    as={ReachLink}
-    to={link}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-  >
-    {text}
-  </Link>
-);
+const NavLink = ({ text, link }) => {
+  return (
+    <Link
+      px={2}
+      py={1}
+      as={ReachLink}
+      to={link}
+      rounded={"md"}
+      _hover={{ color: "brand" }}
+      style={({ isActive }) => (isActive ? { color: "#A18A68" } : undefined)}
+    >
+      {text}
+    </Link>
+  );
+};
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+    <Box borderBottom="1px solid">
+      <Flex minH="75px" alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -57,9 +56,9 @@ const Header = () => {
           onClick={isOpen ? onClose : onOpen}
         />
 
-        <Heading size="md">
+        <Heading size="md" textTransform="capitalize">
           <Link as={ReachLink} to={"/"}>
-            Ada Shop
+            AdaShop
           </Link>
         </Heading>
 
@@ -85,14 +84,8 @@ const Header = () => {
           <CartDrawer />
           {/* Menu del usuario */}
           <Menu>
-            <MenuButton
-              as={Button}
-              rounded={"full"}
-              variant={"link"}
-              cursor={"pointer"}
-              size="xs"
-            >
-              <BsPerson size={25} />
+            <MenuButton as={Button} variant="ghost" size="xs">
+              <BsPerson size={30} />
             </MenuButton>
             <MenuList>
               <MenuItem>Link 1</MenuItem>

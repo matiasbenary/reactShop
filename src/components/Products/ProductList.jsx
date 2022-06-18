@@ -20,11 +20,16 @@ const ProductList = ({ response, loading }) => {
     );
   }
   return (
-    <SimpleGrid w="100%" my="10" minChildWidth="330px" spacing="40px">
+    <SimpleGrid
+      columns={[1, null, 2, 3]}
+      w="100%"
+      spacing={["40px", null, "20px"]}
+      justifyItems="center"
+    >
       {response &&
         response.data.map((product) => (
           <CardProduct
-            key={`card${product.id}`}
+            key={`card-${product.id}`}
             id={product.id}
             data={product.attributes}
           />

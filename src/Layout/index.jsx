@@ -11,6 +11,8 @@ const Layout = ({ children }) => {
       flexDirection="column"
       justifyContent="space-between"
       minHeight="100vh"
+      maxW="1252px"
+      m="auto"
     >
       <Header />
       <Main>{children}</Main>

@@ -1,8 +1,8 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 
 const Pagination = ({ setPage, pagination }) => {
   return (
-    <div>
+    <Flex gap={5} mt={5} justify="center" align="center">
       <Button
         colorScheme="blue"
         onClick={() => {
@@ -21,7 +21,7 @@ const Pagination = ({ setPage, pagination }) => {
       >
         Siguiente
       </Button>
-    </div>
+    </Flex>
   );
 };
 export default Pagination;

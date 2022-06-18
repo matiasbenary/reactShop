@@ -14,7 +14,6 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { MdLocalShipping } from "react-icons/md";
 
 import useCart from "../../../hooks/useCart";
 import useGet from "../../../hooks/useGet";
@@ -126,33 +125,9 @@ const Show = ({ id }) => {
               />
             }
           >
-            <VStack spacing={{ base: 4, sm: 6 }}>
+            <VStack spacing={{ base: 4, sm: 6 }} align="flex-start">
               <Text fontSize={"lg"}>{description}</Text>
             </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Features
-              </Text>
-
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{" "}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
-              </SimpleGrid>
-            </Box>
             <Box>
               <Text
                 fontSize={{ base: "16px", lg: "18px" }}
@@ -231,11 +206,6 @@ const Show = ({ id }) => {
           >
             Add to cart
           </Button>
-
-          <Stack direction="row" alignItems="center" justifyContent={"center"}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
-          </Stack>
         </Stack>
       </SimpleGrid>
     </Container>

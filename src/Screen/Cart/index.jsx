@@ -1,4 +1,12 @@
-import { Container, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
+import {
+  Container,
+  Heading,
+  Link,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { Link as ReachLink } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { CartItem } from "../../components/Cart/CartItem";
@@ -11,7 +19,28 @@ const Cart = () => {
     <Container maxW="full" my={10} textAlign="center">
       <Heading>Cart</Heading>
       {/* Carrito vacio */}
-      {!cart.length && <Heading>Carrito vacio</Heading>}
+      {!cart.length && (
+        <VStack
+          w="full"
+          bg="secondary"
+          borderBottom="1px solid"
+          borderColor="gray"
+          align="flex-start"
+          p={5}
+        >
+          <Text>Tu carrito esta vacio.</Text>
+          <Link
+            as={ReachLink}
+            to="/"
+            bg="brand"
+            p="10px 5px"
+            rounded="lg"
+            color="white"
+          >
+            Volver a la tienda
+          </Link>
+        </VStack>
+      )}
 
       {/* carrito */}
       {!!cart.length && (

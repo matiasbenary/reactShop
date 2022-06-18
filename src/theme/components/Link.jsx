@@ -8,11 +8,10 @@ export const Link = {
   variants: {
     button: {
       background: "brand",
-      bg: "blue.500",
       w: "full",
       textAlign: "center",
       py: 2,
-      rounded: "md",
+      rounded: "sm",
       color: "white",
       transition: "background 0.2s ease",
       _hover: { background: "brand.300", border: 0, textDecoration: "none" },

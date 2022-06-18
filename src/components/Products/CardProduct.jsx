@@ -1,74 +1,48 @@
 import {
   Box,
+  Flex,
   Heading,
   Image,
-  Stack,
+  LinkBox,
+  LinkOverlay,
   Text,
-  useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
-import { Link as ReachLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CardProduct = ({ data, id }) => {
   return (
-    <Box
-      role={"group"}
-      p={6}
-      maxW={"330px"}
-      w={"full"}
-      bg={useColorModeValue("white", "gray.800")}
-      boxShadow={"2xl"}
-      rounded={"lg"}
-      pos={"relative"}
-      zIndex={1}
-      as={ReachLink}
-      to={`/producto/${id}`}
-    >
-      <Box
-        rounded={"lg"}
-        mt={-12}
-        pos={"relative"}
-        height={"230px"}
-        _after={{
-          transition: "all .3s ease",
-          content: '""',
-          w: "full",
-          h: "full",
-          pos: "absolute",
-          top: 5,
-          left: 0,
-          backgroundImage: `url(${data.img})`,
-          filter: "blur(15px)",
-          zIndex: -1,
-        }}
-        _groupHover={{
-          _after: {
-            filter: "blur(20px)",
-          },
-        }}
-      >
-        <Image
-          rounded={"lg"}
-          height={230}
-          width={282}
-          objectFit={"cover"}
-          src={data.image.data.attributes.url}
-        />
+    <LinkBox as="article" maxW="xs" role="group">
+      <Box position="relative" overflow="hidden" roundedTop="lg" bg="secondary">
+        <Image src={data.image.data.attributes.url} />
+        <Flex
+          position="absolute"
+          bg="secondary"
+          bottom={-100}
+          left={0}
+          w="full"
+          minH="60px"
+          align="center"
+          justify="center"
+          transition="all .25s ease"
+          _groupHover={{
+            bottom: 0,
+          }}
+        >
+          <Text fontWeight="bold">Ver mas detalles</Text>
+        </Flex>
       </Box>
-      <Stack pt={10} align={"center"}>
-        <Text color={"gray.500"} fontSize={"sm"} textTransform={"uppercase"}>
-          Brand
-        </Text>
-        <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-          {data.title}
+      <VStack align="flex-start" p={1}>
+        <Heading size="md" my="2">
+          <LinkOverlay as={Link} to={`/producto/${id}`}>
+            {data.title}
+          </LinkOverlay>
         </Heading>
-        <Stack direction={"row"} align={"center"}>
-          <Text fontWeight={800} fontSize={"xl"}>
-            {data.price}
-          </Text>
-          <Text textDecoration={"line-through"} color={"gray.600"} />
-        </Stack>
-      </Stack>
-    </Box>
+        <Text color="brand" fontSize="xl" fontWeight="bold">
+          $ {data.price}
+        </Text>
+      </VStack>
+    </LinkBox>
   );
 };
 

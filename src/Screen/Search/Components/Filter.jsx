@@ -5,12 +5,13 @@ import {
   FormControl,
   FormLabel,
   Input,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
   Switch,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 
 const Filter = ({ setFilter }) => {
@@ -31,46 +32,46 @@ const Filter = ({ setFilter }) => {
   }, [title, minPrice, maxPrice, hasStock]);
 
   return (
-    <>
+    <VStack minW={["auto", null, "300px"]} spacing={10} w="full" mt={10}>
       <Input
-        mt="4"
-        placeholder="Basic usage"
+        placeholder="Buscar..."
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
-      <Box>
-        <NumberInput
+      <Box w="full">
+        <Text>Filtrar por precio</Text>
+        <RangeSlider
+          aria-label={["min", "max"]}
+          defaultValue={[0, 10000]}
+          onChangeEnd={(values) => {
+            console.log(values);
+            setMaxPrice(values[1]);
+            setMinPrice(values[0]);
+          }}
           min={0}
-          onChange={(price) => setMinPrice(Number(price))}
-          value={minPrice}
+          max={10000}
+          step={100}
+          colorScheme="blackAlpha"
         >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <NumberInput
-          min={0}
-          onChange={(price) => setMaxPrice(Number(price))}
-          value={maxPrice}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <FormControl>
-          <FormLabel htmlFor="isChecked">Unidades disponibles</FormLabel>
-          <Switch
-            id="isChecked"
-            isChecked={hasStock}
-            onChange={() => setHasStock(!hasStock)}
-          />
-        </FormControl>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack />
+          </RangeSliderTrack>
+          <RangeSliderThumb index={0} />
+          <RangeSliderThumb index={1} />
+        </RangeSlider>
+        <Text color="gray" fontSize="14px">
+          Precio: ${minPrice} - ${maxPrice}
+        </Text>
       </Box>
-    </>
+      <FormControl>
+        <FormLabel htmlFor="isChecked">Unidades disponibles</FormLabel>
+        <Switch
+          id="isChecked"
+          isChecked={hasStock}
+          onChange={() => setHasStock(!hasStock)}
+        />
+      </FormControl>
+    </VStack>
   );
 };
 

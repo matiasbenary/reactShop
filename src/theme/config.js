@@ -4,8 +4,8 @@ const config = {
   initialColorMode: "light",
   useSystemColorMode: false,
   fonts: {
-    heading: ` sans-serif; `,
-    body: `sans-serif; `,
+    heading: `"DM Sans", sans-serif`,
+    body: `"DM Sans", sans-serif`,
   },
   styles: {
     global: {
@@ -19,22 +19,22 @@ const config = {
       error: "red.500",
       success: "green.500",
       primary: {
-        default: "#F5F4F5",
+        default: "#FFFFFF",
         _dark: "#262626",
       },
       secondary: {
-        default: "#FFFFFF",
+        default: "#F5F4F5",
         _dark: "#111111",
       },
       brand: {
-        default: "#3F7BFB",
+        default: "#A18A68",
       },
     },
   },
   colors: {
     brand: {
-      300: "#4780f7",
-      500: "#0a55f4",
+      300: "#af9b7e",
+      500: "#8a7556",
     },
   },
   components: {

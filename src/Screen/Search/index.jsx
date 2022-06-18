@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+
 import { ProductList } from "../../components/Products";
 import useDebounce from "../../hooks/useDebounce";
 import useGet from "../../hooks/useGet";
@@ -18,17 +20,29 @@ const Search = () => {
   }, [debouncedValue]);
   console.log(response);
   return (
-    <>
-      Instantaneo
+    <Box pt={10}>
+      {/* Instantaneo
       {JSON.stringify(filter)}
       Debounced
-      {JSON.stringify(debouncedValue)}
-      <Filter setFilter={setFilter} />
-      <ProductList response={response} loading={loading} />
-      {response && (
-        <Pagination setPage={setPage} pagination={response.meta.pagination} />
-      )}
-    </>
+      {JSON.stringify(debouncedValue)} */}
+      <Heading size="md">Productos</Heading>
+      <SimpleGrid
+        columns={[1, null, null, 2]}
+        templateColumns={["1fr", null, null, "auto 1fr"]}
+        gap={5}
+      >
+        <Filter setFilter={setFilter} />
+        <Box>
+          <ProductList response={response} loading={loading} />
+          {response && (
+            <Pagination
+              setPage={setPage}
+              pagination={response.meta.pagination}
+            />
+          )}
+        </Box>
+      </SimpleGrid>
+    </Box>
   );
 };
 
