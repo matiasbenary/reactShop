@@ -45,7 +45,14 @@ const useCart = () => {
     setCartState([]);
   };
 
-  return { addProduct, deleteProduct, removeOneProduct, emptyCart, calcTotal };
+  return {
+    addProduct,
+    deleteProduct,
+    removeOneProduct,
+    emptyCart,
+    calcTotal,
+    cart,
+  };
 };
 
 export default useCart;

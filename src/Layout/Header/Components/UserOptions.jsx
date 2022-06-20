@@ -7,6 +7,7 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 
 import useUser from "../../../hooks/useUser";
@@ -16,7 +17,7 @@ const UserOptions = () => {
   const { user, singOutUser } = useUser();
 
   const setShowModal = useSetRecoilState(authModal);
-  console.log(user);
+
   if (!user) {
     return (
       <Button
@@ -37,8 +38,12 @@ const UserOptions = () => {
       </MenuButton>
       <MenuList>
         <MenuItem>{user?.user?.username}</MenuItem>
-        <MenuItem>Mi datos</MenuItem>
-        <MenuItem>Mi pedidos</MenuItem>
+        <MenuItem>
+          <Link to="/perfil">Mi datos</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/pedidos">Mis Pedidos</Link>
+        </MenuItem>
         <MenuDivider />
         <MenuItem onClick={() => singOutUser()}>Salir</MenuItem>
       </MenuList>

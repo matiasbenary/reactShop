@@ -3,6 +3,18 @@ const MAX = 1000;
 const MIN = 0;
 const PAGESIZE = 10;
 
+const convertFilterOrder = (filter) =>
+  qs.stringify(
+    {
+      filters: {
+        users_permissions_users: filter,
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    }
+  );
+
 const convertFilter = (filter) =>
   qs.stringify(
     {
@@ -40,4 +52,4 @@ const converPagination = (page) =>
     }
   );
 
-export { convertFilter, converPopulate, converPagination };
+export { convertFilter, converPopulate, converPagination, convertFilterOrder };

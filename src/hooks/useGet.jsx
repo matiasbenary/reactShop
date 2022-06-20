@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import { useRecoilValue } from "recoil";
 
+import userState from "../shared/user";
 import { converPagination, converPopulate } from "../utils/objectToUri";
 
 axios.defaults.baseURL = "https://strapiecommerce-production.up.railway.app";
 
 const useGet = (url, populateArray) => {
+  const user = useRecoilValue(userState);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setloading] = useState(true);
@@ -18,9 +21,11 @@ const useGet = (url, populateArray) => {
 
   const paginate = converPagination(page);
 
+  const header = user ? { Authorization: `Bearer ${user.jwt}` } : {};
+
   const fetchData = () => {
     axios
-      .get(`/api/${url}?${paginate}&${populate}&${filters}`)
+      .get(`/api/${url}?${paginate}&${populate}&${filters}`, header)
       .then((res) => {
         setResponse(res.data);
       })

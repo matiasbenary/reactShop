@@ -6,8 +6,7 @@ import Carousel from "./Components/Carousel";
 
 const Home = () => {
   const { response, loading } = useGet("products", ["image"]);
-  console.log(response);
-  // return null;
+
   return (
     <>
       <Carousel />

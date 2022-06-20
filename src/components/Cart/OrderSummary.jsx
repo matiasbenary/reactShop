@@ -8,6 +8,8 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 
 import useCart from "../../hooks/useCart";
@@ -15,14 +17,31 @@ import useUser from "../../hooks/useUser";
 import authModal from "../../shared/authModal";
 
 export const OrderSummary = () => {
-  const { calcTotal } = useCart();
+  const { calcTotal, cart, emptyCart } = useCart();
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const setShowModal = useSetRecoilState(authModal);
 
-  const handleOnClick = () => {
+  const handleOnClick = async () => {
     if (!user) {
       setShowModal(true);
+    } else {
+      const response = await axios.post(
+        "https://strapiecommerce-production.up.railway.app/api/orders",
+        {
+          data: { Item: cart, users_permissions_users: user.user.id },
+        },
+        {
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.jwt}`,
+          },
+        }
+      );
+      emptyCart();
+      navigate("/pedidos");
     }
   };
 
