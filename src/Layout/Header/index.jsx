@@ -1,25 +1,19 @@
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
-  HStack,
-  Link,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  Stack,
   Heading,
+  HStack,
+  IconButton,
+  Link,
+  Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { BsPerson } from "react-icons/bs";
 import { NavLink as ReachLink } from "react-router-dom";
 
 import { CartDrawer } from "../../components/Cart/CartDrawer";
+import UserOptions from "./Components/UserOptions";
 
 const Links = [
   { label: "Tienda", url: "/productos" },
@@ -83,17 +77,7 @@ const Header = () => {
           {/* Carrito */}
           <CartDrawer />
           {/* Menu del usuario */}
-          <Menu>
-            <MenuButton as={Button} variant="ghost" size="xs">
-              <BsPerson size={30} />
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Link 1</MenuItem>
-              <MenuItem>Link 2</MenuItem>
-              <MenuDivider />
-              <MenuItem>Link 3</MenuItem>
-            </MenuList>
-          </Menu>
+          <UserOptions />
         </Flex>
       </Flex>
 

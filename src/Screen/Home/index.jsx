@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 
 import { ProductList } from "../../components/Products";
 import useGet from "../../hooks/useGet";
-import Carousel from "./components/Carousel";
+import Carousel from "./Components/Carousel";
 
 const Home = () => {
   const { response, loading } = useGet("products", ["image"]);

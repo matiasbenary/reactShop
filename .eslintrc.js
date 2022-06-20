@@ -7,6 +7,7 @@ module.exports = {
     "plugin:react/recommended",
     "standard",
     "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -25,6 +26,13 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/self-closing-comp": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        additionalHooks: "(useRecoilCallback|useRecoilTransaction_UNSTABLE)",
+      },
+    ],
     "import/order": [
       "error",
       {

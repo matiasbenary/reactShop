@@ -18,61 +18,6 @@ import {
 import useCart from "../../../hooks/useCart";
 import useGet from "../../../hooks/useGet";
 
-// const item = {
-//   id: 1,
-//   attributes: {
-//     title: "Botellas almacenadoras",
-//     price: 200,
-//     description: "Son botellas",
-//     createdAt: "2022-06-13T02:37:31.173Z",
-//     updatedAt: "2022-06-13T02:38:54.164Z",
-//     publishedAt: "2022-06-13T02:38:54.098Z",
-//     stock: 1000,
-//     image: {
-//       data: {
-//         id: 3,
-//         attributes: {
-//           name: "102.webp",
-//           alternativeText: "102.webp",
-//           caption: "102.webp",
-//           width: 400,
-//           height: 400,
-//           formats: {
-//             thumbnail: {
-//               ext: ".webp",
-//               url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/thumbnail_102_d0a7a47a28.webp",
-//               hash: "thumbnail_102_d0a7a47a28",
-//               mime: "image/webp",
-//               name: "thumbnail_102.webp",
-//               path: null,
-//               size: 1.95,
-//               width: 156,
-//               height: 156,
-//               provider_metadata: {
-//                 public_id: "thumbnail_102_d0a7a47a28",
-//                 resource_type: "image",
-//               },
-//             },
-//           },
-//           hash: "102_d0a7a47a28",
-//           ext: ".webp",
-//           mime: "image/webp",
-//           size: 7.79,
-//           url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655087808/102_d0a7a47a28.webp",
-//           previewUrl: null,
-//           provider: "cloudinary",
-//           provider_metadata: {
-//             public_id: "102_d0a7a47a28",
-//             resource_type: "image",
-//           },
-//           createdAt: "2022-06-13T02:36:49.302Z",
-//           updatedAt: "2022-06-13T02:36:49.302Z",
-//         },
-//       },
-//     },
-//   },
-// };
-
 const Show = ({ id }) => {
   const { response } = useGet(`products/${id}/`, ["image"]);
 

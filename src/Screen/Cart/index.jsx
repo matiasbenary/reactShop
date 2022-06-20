@@ -15,6 +15,7 @@ import cartState from "../../shared/cart";
 
 const Cart = () => {
   const cart = useRecoilValue(cartState);
+
   return (
     <Container maxW="full" my={10} textAlign="center">
       <Heading>Cart</Heading>

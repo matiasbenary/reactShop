@@ -8,11 +8,23 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
+import { useSetRecoilState } from "recoil";
 
 import useCart from "../../hooks/useCart";
+import useUser from "../../hooks/useUser";
+import authModal from "../../shared/authModal";
 
 export const OrderSummary = () => {
   const { calcTotal } = useCart();
+  const { user } = useUser();
+
+  const setShowModal = useSetRecoilState(authModal);
+
+  const handleOnClick = () => {
+    if (!user) {
+      setShowModal(true);
+    }
+  };
 
   return (
     <VStack
@@ -39,7 +51,12 @@ export const OrderSummary = () => {
           </Tr>
         </Tfoot>
       </Table>
-      <Button size="lg" w="full" colorScheme="blackAlpha">
+      <Button
+        size="lg"
+        w="full"
+        colorScheme="blackAlpha"
+        onClick={handleOnClick}
+      >
         Finalizar Compra
       </Button>
     </VStack>

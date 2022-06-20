@@ -6,8 +6,8 @@ import { ProductList } from "../../components/Products";
 import useDebounce from "../../hooks/useDebounce";
 import useGet from "../../hooks/useGet";
 import { convertFilter } from "../../utils/objectToUri";
-import Filter from "./components/Filter";
-import Pagination from "./components/Pagination";
+import Filter from "./Components/Filter";
+import Pagination from "./Components/Pagination";
 
 const Search = () => {
   const { response, loading, setFilters, setPage } = useGet("products", [

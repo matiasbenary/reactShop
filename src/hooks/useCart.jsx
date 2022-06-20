@@ -1,12 +1,3 @@
-/*
-TODO: 
-- add element to form cart
-- return element form cart
-- delete element from cart
-
-
-*/
-
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import cartStateitem from "../shared/cart";
