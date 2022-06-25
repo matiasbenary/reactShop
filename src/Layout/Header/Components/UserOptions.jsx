@@ -27,14 +27,14 @@ const UserOptions = () => {
           setShowModal(true);
         }}
       >
-        <BsPerson size={30} />
+        <BsPerson size={25} />
       </Button>
     );
   }
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost" size="xs">
-        <BsPerson size={30} />
+      <MenuButton as={Button} variant="ghost" size="sm">
+        <BsPerson size={25} />
       </MenuButton>
       <MenuList>
         <MenuItem>{user?.user?.username}</MenuItem>

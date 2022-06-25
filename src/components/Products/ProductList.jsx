@@ -5,12 +5,14 @@ import products from "./products";
 // import images from "./img";
 
 const ProductList = ({ response, loading }) => {
-  // console.log(response);
-  // return null;
-  // <Flex w="100%" flexWrap="wrap" mt="10" justify-content="space-between">
   if (loading) {
     return (
-      <SimpleGrid w="100%" my="10" minChildWidth="330px" spacing="40px">
+      <SimpleGrid
+        columns={[1, null, 2, 3]}
+        w="100%"
+        spacing={["40px", null, "20px"]}
+        justifyItems="center"
+      >
         {products.data.map((product) => (
           <Skeleton key={`loadingCard${product.id}`}>
             <CardProduct id={product.id} data={product.attributes} />

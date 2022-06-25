@@ -1,7 +1,7 @@
 import qs from "qs";
 const MAX = 1000;
 const MIN = 0;
-const PAGESIZE = 10;
+const PAGESIZE = 6;
 
 const convertFilterOrder = (filter) =>
   qs.stringify(

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Box,
   Button,
@@ -5,8 +7,6 @@ import {
   Flex,
   Heading,
   Image,
-  List,
-  ListItem,
   SimpleGrid,
   Stack,
   StackDivider,
@@ -20,10 +20,19 @@ import useGet from "../../../hooks/useGet";
 
 const Show = ({ id }) => {
   const { response } = useGet(`products/${id}/`, ["image"]);
+  const [loading, setLoading] = useState(false);
 
   const { addProduct } = useCart();
 
   const { title, price, description, image } = response?.data.attributes || {};
+
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      addProduct(response?.data);
+      setLoading(false);
+    }, 1500);
+  };
 
   return (
     <Container maxW={"7xl"}>
@@ -71,83 +80,20 @@ const Show = ({ id }) => {
             }
           >
             <VStack spacing={{ base: 4, sm: 6 }} align="flex-start">
-              <Text fontSize={"lg"}>{description}</Text>
-            </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Product Details
+              <Text fontSize="md" color="gray.500">
+                {description}
               </Text>
-
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Between lugs:
-                  </Text>{" "}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
-                  </Text>{" "}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case:
-                  </Text>{" "}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
-                  </Text>{" "}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
-                  </Text>{" "}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
-                  </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
-                  </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
-                </ListItem>
-              </List>
-            </Box>
+            </VStack>
           </Stack>
 
           <Button
-            rounded={"none"}
-            w={"full"}
-            mt={8}
-            size={"lg"}
-            py={"7"}
-            bg={useColorModeValue("gray.900", "gray.50")}
-            color={useColorModeValue("white", "gray.900")}
-            textTransform={"uppercase"}
-            _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
-            }}
-            onClick={() => {
-              addProduct(response?.data);
-            }}
+            variant="brand"
+            py={8}
+            textTransform="uppercase"
+            fontSize="xl"
+            onClick={handleClick}
+            isLoading={loading}
+            loadingText="Agregando producto"
           >
             Add to cart
           </Button>

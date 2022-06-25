@@ -32,7 +32,13 @@ const Filter = ({ setFilter }) => {
   }, [title, minPrice, maxPrice, hasStock]);
 
   return (
-    <VStack minW={["auto", null, "300px"]} spacing={10} w="full" mt={10}>
+    <VStack
+      minW={["auto", null, "300px"]}
+      spacing={10}
+      w="full"
+      mt={10}
+      p={{ base: 2, lg: 0 }}
+    >
       <Input
         placeholder="Buscar..."
         onChange={(e) => setTitle(e.target.value)}
@@ -44,20 +50,19 @@ const Filter = ({ setFilter }) => {
           aria-label={["min", "max"]}
           defaultValue={[0, 10000]}
           onChangeEnd={(values) => {
-            console.log(values);
             setMaxPrice(values[1]);
             setMinPrice(values[0]);
           }}
           min={0}
           max={10000}
           step={100}
-          colorScheme="blackAlpha"
+          colorScheme="yellow"
         >
           <RangeSliderTrack>
             <RangeSliderFilledTrack />
           </RangeSliderTrack>
-          <RangeSliderThumb index={0} />
-          <RangeSliderThumb index={1} />
+          <RangeSliderThumb index={0} bg="yellow.500" />
+          <RangeSliderThumb index={1} bg="yellow.500" />
         </RangeSlider>
         <Text color="gray" fontSize="14px">
           Precio: ${minPrice} - ${maxPrice}

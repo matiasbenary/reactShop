@@ -17,8 +17,8 @@ const Cart = () => {
   const cart = useRecoilValue(cartState);
 
   return (
-    <Container maxW="full" my={10} textAlign="center">
-      <Heading>Cart</Heading>
+    <Container maxW="full" my={5} textAlign="center">
+      <Heading>Finalizar Compra</Heading>
       {/* Carrito vacio */}
       {!cart.length && (
         <VStack
@@ -45,7 +45,7 @@ const Cart = () => {
 
       {/* carrito */}
       {!!cart.length && (
-        <SimpleGrid columns={[1, null, null, 2]} gap={5} mt={[10, null, 24]}>
+        <SimpleGrid columns={[1, null, null, 2]} gap={5} mt={[10, null, 14]}>
           {/* Productos del carrito */}
           <VStack>
             {cart.map((product) => (

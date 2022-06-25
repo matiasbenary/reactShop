@@ -4,12 +4,15 @@ import {
   Flex,
   Heading,
   HStack,
+  Icon,
   IconButton,
   Link,
   Stack,
   Text,
+  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { NavLink as ReachLink } from "react-router-dom";
 
 import { CartDrawer } from "../../components/Cart/CartDrawer";
@@ -37,6 +40,7 @@ const NavLink = ({ text, link }) => {
 };
 
 const Header = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -47,6 +51,7 @@ const Header = () => {
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={"Open Menu"}
           display={{ md: "none" }}
+          ml={2}
           onClick={isOpen ? onClose : onOpen}
         />
 
@@ -56,7 +61,7 @@ const Header = () => {
           </Link>
         </Heading>
 
-        <Flex alignItems={"center"} gap={5}>
+        <Flex alignItems={"center"} gap={{ base: 1, lg: 3 }}>
           <HStack
             as={"nav"}
             spacing={4}
@@ -74,6 +79,13 @@ const Header = () => {
           <Text as="span" display={["none", null, "block"]}>
             |
           </Text>
+          <Icon
+            as={colorMode === "dark" ? RiSunLine : RiMoonLine}
+            onClick={toggleColorMode}
+            w={6}
+            h={6}
+            role="button"
+          />
           {/* Carrito */}
           <CartDrawer />
           {/* Menu del usuario */}

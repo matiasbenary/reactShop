@@ -18,14 +18,13 @@ const Search = () => {
   useEffect(() => {
     setFilters(convertFilter(debouncedValue));
   }, [debouncedValue]);
-  console.log(response);
   return (
     <Box pt={10}>
       {/* Instantaneo
       {JSON.stringify(filter)}
       Debounced
       {JSON.stringify(debouncedValue)} */}
-      <Heading size="md">Productos</Heading>
+      <Heading size="lg">Productos</Heading>
       <SimpleGrid
         columns={[1, null, null, 2]}
         templateColumns={["1fr", null, null, "auto 1fr"]}

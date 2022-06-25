@@ -4,20 +4,22 @@ const Pagination = ({ setPage, pagination }) => {
   return (
     <Flex gap={5} mt={5} justify="center" align="center">
       <Button
-        colorScheme="blue"
+        variant="brand"
         onClick={() => {
           if (pagination.page <= 1) return;
           setPage(pagination.page - 1);
         }}
+        isDisabled={pagination.page === 1}
       >
         Anterior
       </Button>
       <Button
-        colorScheme="blue"
+        variant="brand"
         onClick={() => {
           if (pagination.total === pagination.page) return;
           setPage(pagination.page + 1);
         }}
+        isDisabled={pagination.pageCount === pagination.page}
       >
         Siguiente
       </Button>

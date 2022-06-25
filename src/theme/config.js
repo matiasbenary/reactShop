@@ -1,4 +1,4 @@
-import { Link } from "./components/Link";
+import { Link, Button } from "./components";
 
 const config = {
   initialColorMode: "light",
@@ -39,6 +39,7 @@ const config = {
   },
   components: {
     Link,
+    Button,
   },
 };
 

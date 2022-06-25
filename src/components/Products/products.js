@@ -217,6 +217,60 @@ const products = {
       },
     },
     {
+      id: 6,
+      attributes: {
+        title: "Lampara fifi",
+        price: 200,
+        description: "Lampara con detalle en dorado",
+        createdAt: "2022-06-13T22:15:37.031Z",
+        updatedAt: "2022-06-13T23:00:15.600Z",
+        publishedAt: "2022-06-13T23:00:15.533Z",
+        stock: 100,
+        image: {
+          data: {
+            id: 17,
+            attributes: {
+              name: "14.webp",
+              alternativeText: "14.webp",
+              caption: "14.webp",
+              width: 400,
+              height: 400,
+              formats: {
+                thumbnail: {
+                  ext: ".webp",
+                  url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655158355/thumbnail_14_de33ca54b7.webp",
+                  hash: "thumbnail_14_de33ca54b7",
+                  mime: "image/webp",
+                  name: "thumbnail_14.webp",
+                  path: null,
+                  size: 0.97,
+                  width: 156,
+                  height: 156,
+                  provider_metadata: {
+                    public_id: "thumbnail_14_de33ca54b7",
+                    resource_type: "image",
+                  },
+                },
+              },
+              hash: "14_de33ca54b7",
+              ext: ".webp",
+              mime: "image/webp",
+              size: 2.38,
+              url: "https://res.cloudinary.com/dhf7tktdx/image/upload/v1655158355/14_de33ca54b7.webp",
+              previewUrl: null,
+              provider: "cloudinary",
+              provider_metadata: {
+                public_id: "14_de33ca54b7",
+                resource_type: "image",
+              },
+              createdAt: "2022-06-13T22:12:36.019Z",
+              updatedAt: "2022-06-13T22:12:36.019Z",
+            },
+          },
+        },
+      },
+    },
+    {
       id: 5,
       attributes: {
         title: "Lampara fifi",

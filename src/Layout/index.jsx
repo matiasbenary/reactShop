@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
       minHeight="100vh"
       maxW="1252px"
       m="auto"
+      transition="all .3s"
     >
       <Header />
       <Main>{children}</Main>

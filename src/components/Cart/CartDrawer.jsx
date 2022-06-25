@@ -15,6 +15,7 @@ import {
   Text,
   Link,
   VStack,
+  Circle,
 } from "@chakra-ui/react";
 import { BsCart } from "react-icons/bs";
 import { Link as ReachLink } from "react-router-dom";
@@ -31,8 +32,30 @@ export const CartDrawer = () => {
   const { emptyCart, calcTotal } = useCart();
   return (
     <>
-      <Button ref={btnRef} variant="ghost" size="sm" onClick={onOpen}>
-        <BsCart size={25} />
+      <Button
+        ref={btnRef}
+        variant="ghost"
+        position="relative"
+        size="sm"
+        onClick={onOpen}
+      >
+        <BsCart size={22} />
+        <Circle
+          position="absolute"
+          top={0}
+          right={0}
+          bg="brand"
+          color="white"
+          w={4}
+          h={4}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text as="span" fontSize="9px">
+            {cart.length}
+          </Text>
+        </Circle>
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -41,7 +64,7 @@ export const CartDrawer = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg="primary">
           <DrawerCloseButton />
           <DrawerHeader>Mi Carrito</DrawerHeader>
 

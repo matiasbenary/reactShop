@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Button,
   Heading,
@@ -6,6 +8,7 @@ import {
   Td,
   Tfoot,
   Tr,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -18,31 +21,51 @@ import authModal from "../../shared/authModal";
 
 export const OrderSummary = () => {
   const { calcTotal, cart, emptyCart } = useCart();
+  const [loading, setLoading] = useState(false);
   const { user } = useUser();
+  const toast = useToast({
+    variant: "top-accent",
+    isClosable: true,
+    duration: 3000,
+  });
   const navigate = useNavigate();
 
   const setShowModal = useSetRecoilState(authModal);
 
   const handleOnClick = async () => {
+    setLoading(true);
     if (!user) {
       setShowModal(true);
     } else {
-      const response = await axios.post(
-        "https://strapiecommerce-production.up.railway.app/api/orders",
-        {
-          data: { Item: cart, users_permissions_users: user.user.id },
-        },
-        {
-          headers: {
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.jwt}`,
+      try {
+        await axios.post(
+          "https://strapiecommerce-production.up.railway.app/api/orders",
+          {
+            data: { Item: cart, users_permissions_users: user.user.id },
           },
-        }
-      );
-      emptyCart();
-      navigate("/pedidos");
+          {
+            headers: {
+              Accept: "*/*",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.jwt}`,
+            },
+          }
+        );
+        toast({
+          title: "Compra realizada con exito",
+          status: "success",
+        });
+        emptyCart();
+        navigate("/pedidos");
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Ups algo salio mal",
+          status: "error",
+        });
+      }
     }
+    setLoading(false);
   };
 
   return (
@@ -50,7 +73,7 @@ export const OrderSummary = () => {
       spacing={10}
       align="flex-start"
       w="full"
-      bg="gray.100"
+      bg="secondary"
       p={[4, null, 8]}
     >
       <Heading size="lg" fontWeight="light">
@@ -60,7 +83,7 @@ export const OrderSummary = () => {
         <Tbody>
           <Tr>
             <Td w="50%">Envio</Td>
-            <Td>Enter your address to view shipping options.</Td>
+            <Td>Por el momento no hacemos envios ☹️.</Td>
           </Tr>
         </Tbody>
         <Tfoot>
@@ -73,8 +96,9 @@ export const OrderSummary = () => {
       <Button
         size="lg"
         w="full"
-        colorScheme="blackAlpha"
+        variant="brand"
         onClick={handleOnClick}
+        isLoading={loading}
       >
         Finalizar Compra
       </Button>
